@@ -29,5 +29,18 @@ def submit():
 def success():
     return render_template("success.html")
 
+import json
+from flask import jsonify
+
+@app.route("/api", methods=["GET"])
+def api_data():
+    try:
+        with open("data.json", "r") as file:
+            data = json.load(file)
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 if __name__ == "__main__":
     app.run(debug=True)
