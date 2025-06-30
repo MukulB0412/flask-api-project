@@ -41,6 +41,22 @@ def api_data():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route("/submittodoitem", methods=["POST"])
+def submittodoitem():
+    itemName = request.form.get("itemName")
+    itemDescription = request.form.get("itemDescription")
+
+    if itemName and itemDescription:
+        todos_collection = db["todos"]
+        todos_collection.insert_one({
+            "name": itemName,
+            "description": itemDescription
+        })
+        return redirect("/success")
+    else:
+        return "Missing data", 400
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
