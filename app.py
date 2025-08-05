@@ -4,7 +4,8 @@ from pymongo.errors import PyMongoError
 
 app = Flask(__name__)
 
-# Replace with
+
+
 MONGO_URI = "mongodb+srv://harpermb0011:NgQ1h3ZypScX1Q5D@mukulcluster.qxg6gzb.mongodb.net/?retryWrites=true&w=majority&appName=mukulCluster"
 client = MongoClient(MONGO_URI)
 db = client["mydatabase"]
